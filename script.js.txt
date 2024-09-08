@@ -1,24 +1,48 @@
-function checkAnswers() {
-    let inputs = document.querySelectorAll('input[type="text"]');
-    let correct = true;
+// Example crossword puzzle data - You'll need to create your own!
+const crosswordData = {
+  grid: [
+    ["A", "B", "C", "D", "E"],
+    ["F", "G", "H", "I", "J"],
+    ["K", "L", "M", "N", "O"],
+    ["P", "Q", "R", "S", "T"],
+    ["U", "V", "W", "X", "Y"]
+  ],
+  clues: [
+    { direction: "Across", number: 1, answer: "APPLE", clue: "A sweet fruit" },
+    { direction: "Down", number: 2, answer: "DOG", clue: "A furry friend" }
+  ]
+};
 
-    inputs.forEach(input => {
-        let answer = input.getAttribute('data-answer');
-        if (input.value.toUpperCase() !== answer) {
-            correct = false;
-            input.style.backgroundColor = 'red';
-        } else {
-            input.style.backgroundColor = 'lightgreen';
-        }
+const grid = document.querySelector(".puzzle-grid");
+const clueList = document.querySelector(".clue-list ul");
+
+function createGrid() {
+  crosswordData.grid.forEach((row, rowIndex) => {
+    row.forEach((cell, cellIndex) => {
+      const gridCell = document.createElement("div");
+      gridCell.classList.add("grid-cell");
+      gridCell.dataset.row = rowIndex;
+      gridCell.dataset.col = cellIndex;
+      gridCell.textContent = cell;
+      grid.appendChild(gridCell);
     });
-
-    let resultDiv = document.getElementById('result');
-    if (correct) {
-        resultDiv.textContent = 'Все ответы правильные! Поздравляем!';
-        resultDiv.style.color = 'green';
-    } else {
-        resultDiv.textContent = 'Есть ошибки. Попробуйте снова!';
-        resultDiv.style.color = 'red';
-    }
+  });
 }
+
+function createClues() {
+  crosswordData.clues.forEach(clue => {
+    const clueItem = document.createElement("li");
+    clueItem.textContent = `${clue.number}. ${clue.direction}: ${clue.clue}`;
+    clueList.appendChild(clueItem);
+  });
+}
+
+// Event listener for grid cells (you'll need to add input logic)
+grid.addEventListener("click", (event) => {
+  const cell = event.target;
+  // ... (handle input for crossword) ...
+});
+
+createGrid();
+createClues();
 
