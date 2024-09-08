@@ -1,35 +1,21 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Кроссворд по книге "Волшебник Изумрудного города"</title>
-    <link rel="stylesheet" href="style.css">
+  <title>Kids Crossword</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Кроссворд по книге "Волшебник Изумрудного города"</h1>
-    <div class="crossword">
-        <table>
-            <!-- Строки кроссворда с полями для ввода -->
-            <tr>
-                <td><input type="text" maxlength="1" data-answer="Т"></td>
-                <td><input type="text" maxlength="1" data-answer="О"></td>
-                <td><input type="text" maxlength="1" data-answer="Т"></td>
-                <td><input type="text" maxlength="1" data-answer="О"></td>
-            </tr>
-            <tr>
-                <td><input type="text" maxlength="1" data-answer="С"></td>
-                <td><input type="text" maxlength="1" data-answer="К"></td>
-                <td><input type="text" maxlength="1" data-answer="А"></td>
-                <td><input type="text" maxlength="1" data-answer="З"></td>
-            </tr>
-            <!-- Добавьте больше строк и ячеек по мере необходимости -->
-        </table>
+  <div class="container">
+    <h1>Kids Crossword</h1>
+    <div class="puzzle-grid">
+      </div>
+    <div class="clue-list">
+      <h2>Clues</h2>
+      <ul>
+        </ul>
     </div>
+  </div>
 
-    <button onclick="checkAnswers()">Проверить ответы</button>
-    <div id="result"></div>
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
