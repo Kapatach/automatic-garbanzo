@@ -1,0 +1,60 @@
+script.js
+
+// Сетка кроссворда. 0 — пусто, 1 — поле для ввода.
+const crosswordData = [
+    [1, 1, 1, 1, 1, 1, 1],
+    [0, 0, 1, 0, 1, 0, 1],
+    [1, 1, 1, 1, 1, 1, 1],
+    [0, 0, 1, 0, 0, 0, 1],
+    [1, 1, 1, 1, 1, 0, 1]
+];
+
+// Ответы для проверки
+const answers = [
+    "ТОТОШКА", "Л", "ГУДВИН", "А", "ЭЛЛИ",
+    "С", "ЛЕВ", "ИЗУМРУД", "Т", "К"
+];
+
+// Создание таблицы кроссворда
+const table = document.getElementById("crossword");
+
+crosswordData.forEach((row, rowIndex) => {
+    const tr = document.createElement("tr");
+    row.forEach((cell, colIndex) => {
+        const td = document.createElement("td");
+        if (cell === 1) {
+            const input = document.createElement("input");
+            input.setAttribute("maxlength", 1);
+            input.dataset.row = rowIndex;
+            input.dataset.col = colIndex;
+            td.appendChild(input);
+        }
+        tr.appendChild(td);
+    });
+    table.appendChild(tr);
+});
+
+// Проверка правильности ответов
+function checkAnswers() {
+    let correct = true;
+    const inputs = document.querySelectorAll("input");
+
+    inputs.forEach(input => {
+        const row = input.dataset.row;
+        const col = input.dataset.col;
+        const answer = answers[row][col];
+
+        if (input.value.toUpperCase() === answer) {
+            input.style.backgroundColor = "lightgreen"; // Если ответ правильный
+        } else {
+            input.style.backgroundColor = "lightcoral"; // Если ответ неверный
+            correct = false;
+        }
+    });
+
+    if (correct) {
+        alert("Поздравляю! Все ответы правильные!");
+    } else {
+        alert("Есть ошибки, попробуйте ещё раз.");
+    }
+}
