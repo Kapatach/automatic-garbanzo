@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тестирование API Avito</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-comments"></i> Тестирование API Avito</h1>
+            <div class="status-indicator" id="statusIndicator">
+                <span class="status-dot"></span>
+                <span class="status-text">Проверка подключения...</span>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Панель навигации -->
+            <nav class="nav-tabs">
+                <button class="nav-tab active" data-tab="messages">
+                    <i class="fas fa-envelope"></i> Сообщения
+                </button>
+                <button class="nav-tab" data-tab="chats">
+                    <i class="fas fa-comments"></i> Чаты
+                </button>
+                <button class="nav-tab" data-tab="send">
+                    <i class="fas fa-paper-plane"></i> Отправить
+                </button>
+                <button class="nav-tab" data-tab="logs">
+                    <i class="fas fa-list"></i> Логи
+                </button>
+            </nav>
+
+            <!-- Секция сообщений -->
+            <section id="messages" class="tab-content active">
+                <div class="section-header">
+                    <h2>Сообщения</h2>
+                    <button class="btn btn-primary" onclick="loadMessages()">
+                        <i class="fas fa-sync-alt"></i> Обновить
+                    </button>
+                </div>
+                <div class="messages-container" id="messagesContainer">
+                    <div class="loading">Загрузка сообщений...</div>
+                </div>
+            </section>
+
+            <!-- Секция чатов -->
+            <section id="chats" class="tab-content">
+                <div class="section-header">
+                    <h2>Чаты</h2>
+                    <button class="btn btn-primary" onclick="loadChats()">
+                        <i class="fas fa-sync-alt"></i> Обновить
+                    </button>
+                </div>
+                <div class="chats-container" id="chatsContainer">
+                    <div class="loading">Загрузка чатов...</div>
+                </div>
+            </section>
+
+            <!-- Секция отправки -->
+            <section id="send" class="tab-content">
+                <div class="section-header">
+                    <h2>Отправить сообщение</h2>
+                </div>
+                <form class="send-form" id="sendForm">
+                    <div class="form-group">
+                        <label for="chatId">ID чата:</label>
+                        <input type="text" id="chatId" name="chatId" required placeholder="Введите ID чата">
+                    </div>
+                    <div class="form-group">
+                        <label for="messageText">Сообщение:</label>
+                        <textarea id="messageText" name="messageText" required placeholder="Введите текст сообщения" rows="4"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="fileUpload">Вложения:</label>
+                        <input type="file" id="fileUpload" name="fileUpload" multiple>
+                        <div class="file-list" id="fileList"></div>
+                    </div>
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-paper-plane"></i> Отправить
+                    </button>
+                </form>
+            </section>
+
+            <!-- Секция логов -->
+            <section id="logs" class="tab-content">
+                <div class="section-header">
+                    <h2>Логи приложения</h2>
+                    <div class="log-controls">
+                        <select id="logLevel" onchange="loadLogs()">
+                            <option value="all">Все уровни</option>
+                            <option value="info">Info</option>
+                            <option value="warning">Warning</option>
+                            <option value="error">Error</option>
+                        </select>
+                        <button class="btn btn-primary" onclick="loadLogs()">
+                            <i class="fas fa-sync-alt"></i> Обновить
+                        </button>
+                    </div>
+                </div>
+                <div class="logs-container" id="logsContainer">
+                    <div class="loading">Загрузка логов...</div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Модальное окно для деталей -->
+        <div class="modal" id="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modalTitle">Детали</h3>
+                    <button class="modal-close" onclick="closeModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <!-- Содержимое модального окна -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Уведомления -->
+        <div class="notifications" id="notifications"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
